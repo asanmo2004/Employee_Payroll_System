@@ -1,25 +1,25 @@
-
-Employee Payroll System 
+# Employee Payroll System
 A web-based payroll management system for calculating employee salaries based on work hours, bonuses, and deductions. The system provides an admin panel for managing employee records and allows employees to view their salary details and download payslips.
 
-Features
-Employee Features
-✅ Employee login and registration.
-✅ View personal details, salary information, and leave status.
+## Features
+### Employee Features
+✅ Employee login and registration.  
+✅ View personal details, salary information, and leave status.  
 ✅ Download payslip in PDF format.
 
-Admin Features
-✅ Admin Panel for Employee Management.
-✅ Manage employees – leaves and performance bonus.
-✅ Salary calculation based on attendance, bonuses, and deductions.
+### Admin Features
+✅ Admin Panel for Employee Management.  
+✅ Manage employees – leaves and performance bonus.  
+✅ Salary calculation based on attendance, bonuses, and deductions.  
 
-Tech Stack:
-Frontend: JSP, HTML, CSS, Bootstrap 
-Backend: Core Java and Servlets 
-Database: MySQL (via JDBC) 
-IDE: IntelliJ IDE
+## Tech Stack
+- **Frontend:** JSP, HTML, CSS, Bootstrap  
+- **Backend:** Core Java and Servlets  
+- **Database:** MySQL (via JDBC)  
+- **IDE:** IntelliJ IDEA  
 
-Project Structure:
+## Project Structure
+```
 Employee_Payroll_System/
 │── src/
 │   ├── main/java/
@@ -51,8 +51,11 @@ Employee_Payroll_System/
 │── database/
 │   ├── payroll_db.sql
 │── README.md
-│── pom.xml 
-Database Design:
+│── pom.xml
+```
+
+## Database Design
+```sql
 CREATE DATABASE employee_payroll;
 USE employee_payroll;
 
@@ -62,7 +65,7 @@ CREATE TABLE employees (
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     email VARCHAR(100) UNIQUE,
-    password VARCHAR(255), 
+    password VARCHAR(255),
     phone VARCHAR(15),
     department VARCHAR(50),
     designation VARCHAR(50),
@@ -73,9 +76,9 @@ CREATE TABLE employees (
 CREATE TABLE admin (
     id INT AUTO_INCREMENT PRIMARY KEY,
     employee_id INT NOT NULL UNIQUE,
-    leaves_allowed INT NOT NULL DEFAULT 20, 
+    leaves_allowed INT NOT NULL DEFAULT 20,
     leaves_taken INT NOT NULL DEFAULT 0,
-    bonus DECIMAL(10,2) NOT NULL DEFAULT 0.00, 
+    bonus DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE CASCADE
 );
 
@@ -89,40 +92,23 @@ CREATE TABLE salary (
     net_salary DECIMAL(10,2) GENERATED ALWAYS AS (basic_salary + bonus - deduction) STORED,
     FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE CASCADE
 );
+```
 
-How to Run:
-Setup :
+## How to Run
+### Setup
+1. Install **Smart Tomcat Plugin** in IntelliJ.
+2. Install **MySQL Workbench**.
+3. Copy the above **database schema design**.
+4. Run the **CREATE queries** in MySQL Workbench.
 
-In IntelliJ Install Smart Tomcat Plugin
-Install MySql Workbench 
-Copy the Above database Schema Design
-Run the create queries in the workbench
-
-Deploy the Project :
-
-download the project files in first folder.
-Install Maven because of installing dependencies in pom.xml
-in cmd,type mvn clean package to compile the java files.
-After build success then run the JSP & Servlets using Apache Tomcat.
-
-Open http://localhost:8080/Employee_Payroll_System in a browser.
-
-
-Screenshots:
- Welcome Page
- 
-Employee Login
- 
-Employee Registration
- 
-Employee Dashboard
- 
-Admin Dashboard
- 
-Admin Panel
- 
-
-Downloadable Payslip PDF(Using itext.pdf library)
-
-
- 
+### Deploy the Project
+1. Download the project files.
+2. Install **Maven** (to manage dependencies in `pom.xml`).
+3. In the command line, run:
+   mvn clean package
+   This compiles the Java files.
+4. Once the build is successful, run the JSP & Servlets using **Apache Tomcat**.
+5. Open the application in a browser:
+   ```
+   http://localhost:8080/Employee_Payroll_System
+   ```
